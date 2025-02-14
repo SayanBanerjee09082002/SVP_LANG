@@ -1,0 +1,61 @@
+A compiler is a program that translates high-level programming code into machine code, enabling a computer to execute the instructions. The major components of a compiler are:
+1. Lexical Analyzer (Lexical Analysis)
+
+    Function: Breaks the source code into tokens (small meaningful chunks, like keywords, identifiers, operators, etc.).
+    Output: Tokens.
+    Tools Used: Regular expressions, finite automata.
+    Errors Handled: Lexical errors (e.g., invalid characters in the source code).
+
+2. Syntax Analyzer (Parsing)
+
+    Function: Checks the sequence of tokens for grammatical correctness based on a formal grammar.
+    Output: Parse tree or abstract syntax tree (AST).
+    Tools Used: Context-free grammar, parsers (LL, LR, SLR, LALR, etc.).
+    Errors Handled: Syntax errors (e.g., missing semicolons or mismatched parentheses).
+
+3. Semantic Analyzer (Semantic Analysis)
+
+    Function: Ensures the program's meaning is valid (e.g., type checking, variable declarations).
+    Output: Annotated syntax tree or AST with semantic information.
+    Tools Used: Symbol tables, type-checking rules.
+    Errors Handled: Semantic errors (e.g., type mismatches or undeclared variables).
+
+4. Intermediate Code Generator
+
+    Function: Transforms the AST into an intermediate representation (IR) that is easier to optimize and translate into machine code.
+    Output: Intermediate Code (e.g., Three-Address Code, Quadruples, Abstract Stack Machine Code).
+    Tools Used: Compiler-specific IR formats.
+    Errors Handled: None, but issues in code generation may indicate earlier stage problems.
+
+5. Code Optimizer
+
+    Function: Improves the IR for better performance (e.g., reducing execution time or memory usage).
+    Techniques: Dead code elimination, loop unrolling, common subexpression elimination, etc.
+    Output: Optimized Intermediate Code.
+
+6. Code Generator
+
+    Function: Converts the optimized IR into target machine code (assembly or binary).
+    Output: Machine code or assembly code.
+    Tools Used: Register allocation, instruction selection.
+    Errors Handled: None directly, but bugs in code generation may result in incorrect output.
+
+7. Error Handling and Reporting
+
+    Function: Detects, reports, and sometimes recovers from errors in all compiler stages.
+    Errors Handled:
+        Lexical errors.
+        Syntax errors.
+        Semantic errors.
+        Runtime errors (partly during code generation).
+
+8. Symbol Table Manager
+
+    Function: Maintains a table of all symbols (variables, functions, etc.) in the code with information like scope, type, and memory location.
+    Used By: Lexical analyzer, semantic analyzer, intermediate code generator, and code generator.
+
+9. Runtime Environment (Optional)
+
+    Function: Supports runtime features like memory management, garbage collection, and dynamic linking.
+
+Would you like a deeper explanation of any specific component or how they interconnect?

@@ -1,0 +1,41 @@
+#include "me.h"
+
+// Global variable declaration
+int globalVar;
+
+// Function definition: addition of two integers
+int add(int a, int b) {
+    int result;
+    result = a + b;
+    return result;
+}
+
+// Main function
+void main() {
+    int x, y;
+    
+    // Simple assignments
+    x = 10;
+    y = 20;
+    
+    // If-else statement
+    if (x < y) {
+        x = add(x, y);
+    } else {
+        x = 0;
+    }
+    
+    // While loop
+    while (x > 0) {
+        x = x - 1;
+    }
+    
+    // For loop
+    // NOTE: To match the simplified grammar in our parser, the for-loop header
+    // includes an extra semicolon after the increment expression.
+    for (x = 0; x < 10; x = x + 1;) {
+        globalVar = globalVar + x;
+    }
+    
+    return;
+}

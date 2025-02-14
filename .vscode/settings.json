@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "string": "c",
+        "keyword_analyzer.h": "c",
+        "lexical_analyzer.h": "c"
+    }
+}
