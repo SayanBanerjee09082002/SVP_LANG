@@ -35,6 +35,7 @@ void initialize_keyword_table()
     insert_keyword("real", TOKEN_REAL);
     insert_keyword("record", TOKEN_RECORD);
     insert_keyword("return", TOKEN_RETURN);
+    insert_keyword("static", TOKEN_STATIC);
     insert_keyword("string", TOKEN_STRING);
     insert_keyword("void", TOKEN_VOID);
     insert_keyword("while", TOKEN_WHILE);

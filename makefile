@@ -1,40 +1,37 @@
-# Compiler
+# Compiler and flags
 CC = gcc
+CFLAGS = -Wall -Wextra -Iinclude
 
-# Compiler flags
-CFLAGS = -Wall -Wextra -std=c99 -O2
+# Directories
+SRC_DIR = src
+OBJ_DIR = bin
+BIN_DIR = exe
 
-# Source files
-SRCS = main.c string_datatype.c comment_remover.c lexical_analyzer/lexical_analyzer.c lexical_analyzer/keyword_analyzer.c lexical_analyzer/operator_analyzer.c
+# Target executable
+TARGET = $(BIN_DIR)/executable
 
-# Object files directory
-OBJDIR = bin
-OBJS = $(patsubst %.c,$(OBJDIR)/%.o,$(SRCS))
+# Find all .c files recursively
+SRCS = $(shell find $(SRC_DIR) -name '*.c')
 
-# Header files
-HDRS = string_datatype.h comment_remover.h lexical_analyzer/lexical_analyzer.h lexical_analyzer/keyword_analyzer.h lexical_analyzer/operator_analyzer.h lexical_analyzer/tokens.h
-
-# Executable name
-TARGET = executable
+# Generate corresponding .o files
+OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
 # Default target
 all: $(TARGET)
 
-# Create bin directory if it doesn't exist
-$(OBJDIR):
-	mkdir -p $(OBJDIR) $(OBJDIR)/lexical_analyzer
+# Link object files into the final executable
+$(TARGET): $(OBJS)
+	@mkdir -p $(BIN_DIR)
+	$(CC) $(CFLAGS) $^ -o $@
 
-# Link the object files to create the executable
-$(TARGET): $(OBJDIR) $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
-
-# Compile each .c file into an object file
-$(OBJDIR)/%.o: %.c $(HDRS) | $(OBJDIR)
+# Compile .c files into .o files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean up the build files
+# Clean build artifacts
 clean:
-	rm -rf $(OBJDIR) $(TARGET)
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
 # Phony targets
 .PHONY: all clean

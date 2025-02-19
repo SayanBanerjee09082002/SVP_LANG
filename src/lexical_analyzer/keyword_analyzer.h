@@ -2,7 +2,7 @@
 #define KEYWORD_ANALYZER
 
 #include <stdlib.h>
-#include "tokens.h"
+#include "../tokens.h"
 
 #define KEYWORD_TABLE_SIZE 32
 

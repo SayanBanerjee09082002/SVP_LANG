@@ -1,6 +1,6 @@
 #include "lexical_analyzer.h"
 
-Token get_token(FILE *input)
+Token get_next_token(FILE *input)
 {
     Token token;
     char character = fgetc(input);
@@ -174,7 +174,7 @@ Token *lexical_analyzer(FILE *input)
 
     do
     {
-        token = get_token(input);
+        token = get_next_token(input);
         tokens = (Token *)realloc(tokens, (count + 1) * sizeof(Token));
         if (tokens == NULL)
         {

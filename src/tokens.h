@@ -1,7 +1,7 @@
 #ifndef TOKENS_H
 #define TOKENS_H
 
-#include "../string_datatype.h"
+#include "string_datatype.h"
 
 typedef enum
 {
@@ -54,6 +54,7 @@ typedef enum
     TOKEN_REAL,      // real: float/double literals (e.g., 3.14)
     TOKEN_RECORD,    // record
     TOKEN_RETURN,    // return
+    TOKEN_STATIC,    // static
     TOKEN_STRING,    // string literals (e.g., "hello")
     TOKEN_VOID,      // void
     TOKEN_WHILE,     // while

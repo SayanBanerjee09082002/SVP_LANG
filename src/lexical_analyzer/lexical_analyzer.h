@@ -5,8 +5,9 @@
 #include <stdbool.h>
 #include "keyword_analyzer.h"
 #include "operator_analyzer.h"
-#include "tokens.h"
+#include "../tokens.h"
 
+Token get_next_token(FILE *input);
 Token *lexical_analyzer(FILE *input);
 
 #endif
