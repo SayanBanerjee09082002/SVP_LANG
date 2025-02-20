@@ -1,4 +1,4 @@
-#include "production_rules_statements.h"
+#include "production_rules.h"
 
 void parse_stmtList()
 {
@@ -19,7 +19,8 @@ void parse_stmt()
         parse_iterStmt();
     else if (parser_tokens[parser_index].type == TOKEN_INT ||
              parser_tokens[parser_index].type == TOKEN_REAL ||
-             parser_tokens[parser_index].type == TOKEN_STRING)
+             parser_tokens[parser_index].type == TOKEN_STRING ||
+             parser_tokens[parser_index].type == TOKEN_BOOL)
     {
         match(parser_tokens[parser_index].type);
         match(TOKEN_ID);
@@ -31,6 +32,11 @@ void parse_stmt()
         else
             match(TOKEN_SEMICOLON);
     }
+    else if (parser_tokens[parser_index].type == TOKEN_DUALPLUS ||
+             parser_tokens[parser_index].type == TOKEN_DUALMINUS)
+        parse_preOp();
+    else if (parser_tokens[parser_index].type == TOKEN_ID)
+        parse_idOp();
     else
         parse_expStmt();
 }
@@ -49,25 +55,6 @@ void parse_compoundStmt()
     parse_localDecls();
     parse_stmtList();
     match(TOKEN_RBRACE);
-}
-
-void parse_localDecls()
-{
-    while (parser_tokens[parser_index].type == TOKEN_INT ||
-           parser_tokens[parser_index].type == TOKEN_REAL ||
-           parser_tokens[parser_index].type == TOKEN_STRING)
-    {
-        parse_scopedVarDecl();
-    }
-}
-
-void parse_scopedVarDecl()
-{
-    if (parser_tokens[parser_index].type == TOKEN_STATIC)
-        match(TOKEN_STATIC);
-    parse_typeSpec();
-    parse_varDeclList();
-    match(TOKEN_SEMICOLON);
 }
 
 void parse_selectStmt()
@@ -106,3 +93,38 @@ void parse_iterStmt()
         parse_stmt();
     }
 }
+
+// void parse_idOp()
+// {
+//     match(TOKEN_ID);
+//     if (parser_tokens[parser_index].type == TOKEN_LBRACKET)
+//     {
+//         match(TOKEN_LBRACKET);
+//         parse_exp();
+//         match(TOKEN_RBRACKET);
+//     }
+
+//     if (parser_tokens[parser_index].type == TOKEN_EQUAL ||
+//         parser_tokens[parser_index].type == TOKEN_PLUSEQL ||
+//         parser_tokens[parser_index].type == TOKEN_MINUSEQL ||
+//         parser_tokens[parser_index].type == TOKEN_MULEQL ||
+//         parser_tokens[parser_index].type == TOKEN_DIVEQL)
+//     {
+
+//         match(parser_tokens[parser_index].type);
+//         parse_exp();
+//         match(TOKEN_SEMICOLON);
+//     }
+//     else if (parser_tokens[parser_index].type == TOKEN_DUALPLUS ||
+//              parser_tokens[parser_index].type == TOKEN_DUALMINUS)
+//     {
+//         match(parser_tokens[parser_index].type); // Match '++' or '--'
+//         match(TOKEN_SEMICOLON);
+//     }
+//     else
+//     {
+//         if (parser_tokens[parser_index].type == TOKEN_LPAREN)
+//             parse_call();
+//         match(TOKEN_SEMICOLON);
+//     }
+// }

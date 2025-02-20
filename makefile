@@ -29,6 +29,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+run:
+	./exe/executable
+	
 # Clean build artifacts
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)

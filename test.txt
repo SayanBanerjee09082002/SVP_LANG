@@ -1,4 +1,9 @@
 int main() {
     int x = 10 * 20;
-    return x;
+    int y = 10;
+    bool z = x == y ? false : true;
+    if else
+        return x;
+    else
+        return y;
 }
